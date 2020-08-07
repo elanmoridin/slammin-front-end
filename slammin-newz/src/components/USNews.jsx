@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 
 let serverURL = 'https://newsapi.org/v2/top-headlines?country=us' 
 let wrestle = '&q=pro+wreslting&'
+let dateMe = 'from=2020-08-06&'
 let API_KEY = process.env.REACT_APP_NEWS_API
 console.log(API_KEY)
 
@@ -15,7 +16,7 @@ export default class USNews extends Component {
     }
 
     findNews = () => {
-    fetch(serverURL + wrestle + API_KEY).then(res => {
+    fetch(serverURL + wrestle + dateMe + API_KEY).then(res => {
         return res.json();
     }).then(data => {
         this.setState({newslist: data})
@@ -29,7 +30,7 @@ componentDidMount(){
     render() {
         return (
         <div>
-            News Goes Here
+            <h2>US News</h2>
         </div>
         )}
     }
