@@ -38,6 +38,7 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
   )
 }
 
+
 // setting initial state of app to not authenticated
 class App extends React.Component {
   constructor(props) {
