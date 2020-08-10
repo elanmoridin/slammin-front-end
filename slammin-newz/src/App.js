@@ -38,13 +38,32 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
   )
 }
 
+// setting initial state of app to not authenticated
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      authenticated: false,
+      loading: true,
     }
   }
 
+  // using component did mount hook to check if authenticated -- see react documentation -- reactjs.org/docs/state-and-lifecycle.html -- shows loading screen as authentication check happens
+componentDidMount() {
+  auth().onAuthStateChanged((user) => {
+    if (user) {
+      this.setState({
+        authenticated: true,
+        loading: false,
+      })
+    } else {
+      this.setState({
+        authenticated: false,
+        loading: false,
+      })
+    }
+  })
+}
 
   render() {
     return this.state.loading === true ? <h2>Loading...</h2> : (
