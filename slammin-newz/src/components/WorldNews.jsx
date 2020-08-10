@@ -3,7 +3,7 @@ import axios from 'axios';
 
 let serverURL = 'https://newsapi.org/v2/everything?' 
 let wrestle = 'q=professional+wrestling&'
-let dateMe = 'from=2020-08-06&'
+let dateMe = 'from=2020-08-10&'
 let API_KEY = process.env.REACT_APP_NEWS_API
 console.log(API_KEY)
 
