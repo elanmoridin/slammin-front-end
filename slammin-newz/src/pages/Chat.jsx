@@ -1,9 +1,11 @@
-import React , { Component } from "react";
-import { auth } from '../services/firebase';
-import { db } from '../services/firebase';
+import React , { Component } from "react"
+import { auth } from '../services/firebase'
+import { db } from '../services/firebase'
+// couldn't get logout function to migrate from auth file
+import { handleLogOut } from '../helpers/auth'
 
 
-export default class Chat extends React.Component {
+export default class Chat extends Component {
     constructor(props) {
       super(props)
       this.state = {
@@ -15,6 +17,7 @@ export default class Chat extends React.Component {
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
+    //   this.handleLogOut = this.handleLogOut.bind(this)
     }
 
 handleChange(event) {
@@ -70,6 +73,7 @@ async componentDidMount(){
               <div>
                 Login in as: <strong>{this.state.user.email}</strong>
               </div>
+              <button onClick={handleLogOut}>Logout</button>
             </div>
           );
         }

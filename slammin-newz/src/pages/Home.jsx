@@ -1,7 +1,7 @@
-import React from 'react';
-import USNews from '../components/USNews';
-import WorldNews from '../components/WorldNews';
-import logo from '../graphics/daily-slam.png';
+import React from 'react'
+import USNews from '../components/USNews'
+import WorldNews from '../components/WorldNews'
+import logo from '../graphics/daily-slam.png'
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -9,6 +9,7 @@ export default class Home extends React.Component {
       this.state = {
       }
     }
+
 
     render() {
         return (
