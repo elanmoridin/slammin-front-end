@@ -7,7 +7,7 @@ export function signup(email, password) {
 export function signin(email, password) {
     return auth().signInWithEmailAndPassword(email, password)
 }
-
+// function for signing up with google
 export function signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider()
     return auth().signInWithPopup(provider)
