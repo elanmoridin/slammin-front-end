@@ -14,7 +14,7 @@ export default class SignUp extends Component {
         };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.signInWithGoogle = this.signInWithGoogle.bind(this)
+        this.googleSignIn = this.googleSignIn.bind(this)
         }
       
     handleChange(event) {

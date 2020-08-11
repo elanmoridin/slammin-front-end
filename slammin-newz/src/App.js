@@ -6,11 +6,12 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { auth } from './services/firebase.js';
+import { auth } from './services/firebase.js'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
-import Login from './pages/Login.js';
-import Signup from './pages/Signup.js';
+import Login from './pages/Login.js'
+import Signup from './pages/Signup.js'
+import Chat from './pages/Chat'
 import './App.css';
 
 // css-tricks building app with firebase
@@ -75,6 +76,7 @@ componentDidMount() {
           <PrivateRoute path="/profile" authenticated={this.state.authenticated} component={Profile}></PrivateRoute>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
+          <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
         </Switch>
       </Router>
     )
