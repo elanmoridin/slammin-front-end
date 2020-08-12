@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { handleLogOut } from '../helpers/auth'
 
 export default class Profile extends React.Component {
     constructor(props) {
@@ -10,7 +11,8 @@ export default class Profile extends React.Component {
     render() {
         return (
             <div>
-                This is my profile!
+                <h1>This is my profile!</h1>
+                <button onClick={handleLogOut}>Logout</button>
             </div>
         )
     }
