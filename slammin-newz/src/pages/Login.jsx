@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { signin, signInWithGoogle } from "../helpers/auth";
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import { signin } from "../helpers/auth"
 
 export default class Login extends Component {
   constructor(props) {
@@ -70,6 +70,7 @@ export default class Login extends Component {
             ) : null}
             <button type="submit">Login</button>
           </div>
+          <p><Link to="/passwordreset">Forgot Password</Link></p>
           <hr />
           <p>
             Don't have an account? <Link to="/signup">Sign up</Link>

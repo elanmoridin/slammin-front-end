@@ -1,5 +1,6 @@
-import React from 'react';
-import Rebase from 're-base';
+import React from 'react'
+// left over from planning
+// import Rebase from 're-base'
 import { 
   Route,
   BrowserRouter as Router,
@@ -12,6 +13,7 @@ import Profile from './pages/Profile'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Chat from './pages/Chat'
+import PasswordReset from './pages/PasswordReset'
 import './App.css';
 
 // css-tricks building app with firebase
@@ -77,6 +79,7 @@ componentDidMount() {
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
           <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
+          <PublicRoute path="/passwordreset" authenticated={this.state.authenticated} component={PasswordReset}></PublicRoute>
         </Switch>
       </Router>
     )

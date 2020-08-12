@@ -12,9 +12,17 @@ export function signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider()
     return auth().signInWithPopup(provider)
 }
-
+// function for logging out
 export function handleLogOut() {
     auth().signOut()
         .then(() => {
         })
+}
+// function for reset password
+export function passwordReset(email) {
+    email.preventDefault()
+    console.log(email)
+    auth().sendPasswordResetEmail(email)
+        .then(() => {
+        }).catch((error) => {console.log(error)})
 }
