@@ -3,6 +3,7 @@ import { auth } from '../services/firebase'
 import { db } from '../services/firebase'
 // couldn't get logout function to migrate from auth file
 import { handleLogOut } from '../helpers/auth'
+import Header from '../components/Header'
 
 
 export default class Chat extends Component {
@@ -59,10 +60,11 @@ async componentDidMount(){
     render() {
         return (
             <div>
-              <div className="chats">
-                {this.state.chats.map(chat => {
-                  return <p key={chat.timestamp}>{chat.content}</p>
-                })}
+            <Header />
+                <div className="chats">
+                    {this.state.chats.map(chat => {
+                        return <p key={chat.timestamp}>{chat.content}</p>
+                    })}
               </div>
               
               <form onSubmit={this.handleSubmit}>

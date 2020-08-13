@@ -19,7 +19,7 @@ import React , { Component } from 'react'
 // testing api key with env variable
 // console.log(API_KEY)
 
-export default class Weekly extends Component {
+export default class WeeklyNews extends Component {
 
     constructor(props) {
         super(props)
@@ -79,9 +79,10 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
                 <></>
                 :
                 // else it maps the array and pulls out the info to display it
-                this.state.weeklynewslist.map(news => {
+                this.state.weeklynewslist.map(function(news, i) {
                     return (
-                        <div id={news.id} className="world-news">
+                        <div id={i} className="weekly-news">
+                            <h4>{news.id}</h4>
                             <h4>{news.title}</h4>
                             <h5>The Author is: {news.author}</h5>
                             <p>{news.summary}</p>

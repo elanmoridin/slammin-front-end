@@ -14,7 +14,8 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Chat from './pages/Chat'
 import PasswordReset from './pages/PasswordReset'
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
 
 // css-tricks building app with firebase
 // this function recieves 3 props - the component to render if true, the authenticated state and spread operator to get the rest of the params from the router. It checks if authenticated is true and renders the components passed or it redirects to login page
@@ -36,7 +37,7 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
       {...rest}
       render={(props) => authenticated === false
         ? <Component {...props} />
-        : <Redirect to='/profile' />}
+        : <Redirect to='/' />}
     />
   )
 }
@@ -48,6 +49,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       authenticated: false,
+      // shows loading in top left corner as page loads
       loading: true,
     }
   }
@@ -59,22 +61,25 @@ componentDidMount() {
       this.setState({
         authenticated: true,
         loading: false,
+        showNav: true,
       })
     } else {
       this.setState({
         authenticated: false,
         loading: false,
+        showNav: false,
       })
     }
   })
 }
 
   render() {
+    // if state is set to loading then show loading while component mounts and when it mounts the state is set to false and the page shows
     return this.state.loading === true ? <h2>Loading...</h2> : (
       // router dom for react uses routes to switch components based on authitication
       <Router>
         <Switch>
-          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/" showNav={this.state.showNav} component={Home}></Route>
           <PrivateRoute path="/profile" authenticated={this.state.authenticated} component={Profile}></PrivateRoute>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>

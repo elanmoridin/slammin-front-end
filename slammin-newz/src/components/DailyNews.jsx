@@ -1,5 +1,5 @@
 import React , { Component } from 'react'
-
+import Container from 'react-bootstrap/Container'
 // let serverURL = 'https://newsapi.org/v2/top-headlines?country=us' 
 // let wrestle = '&q=pro+wreslting&'
 // let dateMe = 'from=2020-08-12&'
@@ -46,7 +46,7 @@ componentDidMount(){
 
     render() {
         return (
-            <div>
+            <Container>
             {/* return weekly news */}
             <h2>Daily News</h2>
             {
@@ -56,17 +56,17 @@ componentDidMount(){
                 <></>
                 :
                 // else it maps the array and pulls out the info to display it
-                this.state.dailynewslist.map(news => {
+                this.state.dailynewslist.map(function(news, i) {
                     return (
-                        <div id={news.id} className="daily-news">
+                        <div id={i} className="daily-news">
                             <h4>{news.title}</h4>
                             <h5>The Author is: {news.author}</h5>
                             <p>{news.summary}</p>
-                            <a href={news.link}>Link to Article</a>
+                            <button href={news.link}>Link to Article</button>
                         </div>
                     )
                 })
             } 
-        </div>
+            </Container>
         )}
     }
