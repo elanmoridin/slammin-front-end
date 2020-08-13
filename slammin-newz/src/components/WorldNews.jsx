@@ -34,7 +34,7 @@ export default class WorldNews extends Component {
     findNews = () => {
 var myHeaders = new Headers();
 myHeaders.append("x-rapidapi-host", "newscatcher.p.rapidapi.com");
-myHeaders.append("x-rapidapi-key", "d46eca1b52msh4d95c8459d4fd20p19bbebjsn6edd9b2b2700");
+myHeaders.append("x-rapidapi-key", "NO_WAY_JOSE");
 
 var requestOptions = {
   method: 'GET',
