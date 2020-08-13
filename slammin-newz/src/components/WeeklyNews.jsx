@@ -1,31 +1,31 @@
 import React , { Component } from 'react'
 // import axios for the api call we use
-import axios from 'axios'
+// import axios from 'axios'
 
 // google news api endpoint for everything
-let serverURL = 'https://newsapi.org/v2/everything?' 
+// let serverURL = 'https://newsapi.org/v2/everything?' 
 // the call for pro wreslting articles attaches to endpoint call
-let wrestle = 'q=professional+wrestling&'
+// let wrestle = 'q=professional+wrestling&'
 // grab today's longform date
-let todayDate = new Date()
+// let todayDate = new Date()
 // grab today's date in YEAR-MONTH-DAY form for the axios call
-let date = todayDate.getFullYear() + '-' + todayDate.getMonth() + '-' + todayDate.getDate()
+// let date = todayDate.getFullYear() + '-' + todayDate.getMonth() + '-' + todayDate.getDate()
 // breaking down the date call into from which comes before the date
-let dateMeFrom = 'from='
+// let dateMeFrom = 'from='
 // and call comes after the date
-let dateMeAnd = '&'
+// let dateMeAnd = '&'
 // env api key
-let API_KEY = process.env.REACT_APP_NEWS_API
+// let API_KEY = process.env.REACT_APP_NEWS_API
 // testing api key with env variable
 // console.log(API_KEY)
 
-export default class WorldNews extends Component {
+export default class Weekly extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             // set world news list to null to start for page load
-            worldnewslist: null
+            weeklynewslist: null
         }
         this.findNews = this.findNews.bind(this)
     }
@@ -33,8 +33,8 @@ export default class WorldNews extends Component {
 // old fetch call before switching to axios call
     findNews = () => {
 var myHeaders = new Headers();
-myHeaders.append("x-rapidapi-host", "newscatcher.p.rapidapi.com");
-myHeaders.append("x-rapidapi-key", "d46eca1b52msh4d95c8459d4fd20p19bbebjsn6edd9b2b2700");
+myHeaders.append("x-rapidapi-host", "newscatcher.p.rapidapi.com")
+myHeaders.append("x-rapidapi-key", process.env.REACT_APP_NEWSCATCHER)
 
 var requestOptions = {
   method: 'GET',
@@ -46,8 +46,8 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
   .then(res => res.json())
   .then(result => {
     console.log(result)
-    const worldnewslist = result
-    this.setState({worldnewslist: worldnewslist.articles})
+    const weeklynewslist = result
+    this.setState({weeklynewslist: weeklynewslist.articles})
   })
 
   .catch(error => console.log('error', error));
@@ -70,18 +70,18 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
     render() {
         return (
         <div>
-            {/* return world news */}
-            <h2>World News</h2>
+            {/* return weekly news */}
+            <h2>Weekly News</h2>
             {
-                // if world news is null then it lists nothing
-                this.state.worldnewslist == null
+                // if weekly news is null then it lists nothing
+                this.state.weeklynewslist == null
                 ?
                 <></>
                 :
                 // else it maps the array and pulls out the info to display it
-                this.state.worldnewslist.map(news => {
+                this.state.weeklynewslist.map(news => {
                     return (
-                        <div id={news.id}className="world-news">
+                        <div id={news.id} className="world-news">
                             <h4>{news.title}</h4>
                             <h5>The Author is: {news.author}</h5>
                             <p>{news.summary}</p>

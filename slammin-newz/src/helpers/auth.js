@@ -20,8 +20,6 @@ export function handleLogOut() {
 }
 // function for reset password
 export function passwordReset(email) {
-    email.preventDefault()
-    console.log(email)
     auth().sendPasswordResetEmail(email)
         .then(() => {
         }).catch((error) => {console.log(error)})

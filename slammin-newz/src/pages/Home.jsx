@@ -1,6 +1,6 @@
 import React from 'react'
-import USNews from '../components/USNews'
-import WorldNews from '../components/WorldNews'
+import DailyNews from '../components/DailyNews'
+import WeeklyNews from '../components/WeeklyNews'
 import logo from '../graphics/daily-slam.png'
 
 export default class Home extends React.Component {
@@ -15,8 +15,8 @@ export default class Home extends React.Component {
         return (
             <div>
             <img src={logo} alt="Logo" />
-            <USNews />
-            <WorldNews />
+            <DailyNews />
+            <WeeklyNews />
             </div>
         )
     }
