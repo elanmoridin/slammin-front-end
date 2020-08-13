@@ -27,28 +27,44 @@ export default class WorldNews extends Component {
             // set world news list to null to start for page load
             worldnewslist: null
         }
+        this.findNews = this.findNews.bind(this)
     }
 
 // old fetch call before switching to axios call
-    // findNews = () => {
-    // fetch(serverURL + wrestle + dateMe + API_KEY).then(res => {
-    //     return res.json();
-    // }).then(data => {
-    //     this.setState({worldnewslist: data})
-    // })
-    // }
+    findNews = () => {
+var myHeaders = new Headers();
+myHeaders.append("x-rapidapi-host", "newscatcher.p.rapidapi.com");
+myHeaders.append("x-rapidapi-key", "d46eca1b52msh4d95c8459d4fd20p19bbebjsn6edd9b2b2700");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=professional%20wrestling", requestOptions)
+  .then(res => res.json())
+  .then(result => {
+    console.log(result)
+    const worldnewslist = result
+    this.setState({worldnewslist: worldnewslist.articles})
+  })
+
+  .catch(error => console.log('error', error));
+    }
 
     componentDidMount(){
-    // api call to the google news api with all the variables from up top to create the query string
-    axios.get(serverURL + wrestle + dateMeFrom + date + dateMeAnd + API_KEY)
-      .then(res => {
-        // create worldnews arry on mount that can hold the news calls
-        const worldnewslist = res.data;
-        // testing the date variable calls
-        // console.log(date)
-        // sets the array to the data.articles to allow mapping over it with react
-        this.setState({ worldnewslist: worldnewslist.articles });
-      })
+        this.findNews()
+    // // api call to the google news api with all the variables from up top to create the query string
+    // axios.get(serverURL + wrestle + dateMeFrom + date + dateMeAnd + API_KEY)
+    //   .then(res => {
+    //     // create worldnews arry on mount that can hold the news calls
+    //     const worldnewslist = res.data;
+    //     // testing the date variable calls
+    //     // console.log(date)
+    //     // sets the array to the data.articles to allow mapping over it with react
+    //     this.setState({ worldnewslist: worldnewslist.articles });
+    //   })
     }
 
     render() {
@@ -65,12 +81,11 @@ export default class WorldNews extends Component {
                 // else it maps the array and pulls out the info to display it
                 this.state.worldnewslist.map(news => {
                     return (
-                        <div className="world-news">
+                        <div id={news.id}className="world-news">
                             <h4>{news.title}</h4>
                             <h5>The Author is: {news.author}</h5>
-                            <p>{news.content}</p>
-                            <a href={news.url}>
-                            <img alt="Link" src={news.urlToImage}/></a>
+                            <p>{news.summary}</p>
+                            <a href={news.link}>Link to Article</a>
                         </div>
                     )
                 })

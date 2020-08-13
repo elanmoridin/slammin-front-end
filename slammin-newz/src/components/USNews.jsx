@@ -4,7 +4,7 @@ let serverURL = 'https://newsapi.org/v2/top-headlines?country=us'
 let wrestle = '&q=pro+wreslting&'
 let dateMe = 'from=2020-08-12&'
 let API_KEY = process.env.REACT_APP_NEWS_API
-console.log(API_KEY)
+
 
 export default class USNews extends Component {
 
