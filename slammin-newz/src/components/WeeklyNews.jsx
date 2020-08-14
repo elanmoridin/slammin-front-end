@@ -82,7 +82,7 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
                 // else it maps the array and pulls out the info to display it
                 this.state.weeklynewslist.map(function(news, i) {
                     return (
-                        <div id={i} className="weekly-news">
+                        <div key={i} className="weekly-news">
                             <h4>{news.id}</h4>
                             <h4>{news.title}</h4>
                             <h5>The Author is: {news.author}</h5>

@@ -1,6 +1,8 @@
 import React , { Component } from 'react'
 import Container from 'react-bootstrap/Container'
 import {Badge} from 'react-bootstrap'
+import {Card} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 // let serverURL = 'https://newsapi.org/v2/top-headlines?country=us' 
 // let wrestle = '&q=pro+wreslting&'
 // let dateMe = 'from=2020-08-12&'
@@ -50,7 +52,7 @@ componentDidMount(){
         return (
             <Container>
             {/* return weekly news */}
-            <h2>Daily News</h2>
+            <h1 id='daily-news'>Daily News <Badge id='new-news' pill variant="success">New</Badge></h1>
             {
                 // if weekly news is null then it lists nothing
                 this.state.dailynewslist == null
@@ -60,12 +62,32 @@ componentDidMount(){
                 // else it maps the array and pulls out the info to display it
                 this.state.dailynewslist.map(function(news, i) {
                     return (
-                        <div id={i} className="daily-news">
-                            <h4>{news.title} <Badge variant="secondary">New</Badge></h4>
-                            <h5>The Author is: {news.author}</h5>
-                            <p>{news.summary}</p>
-                            <a href={news.link}>Link to Article</a>
-                        </div>
+                        ['Dark'].map((variant, idx) => (
+                            <Card
+                              bg={variant.toLowerCase()}
+                              key={idx}
+                              text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
+                            //   style={{ width: '85%' }}
+                              className="mb-2"
+                            >
+                              <Card.Header>Published: {news.published_date}</Card.Header>
+                              <Card.Body>
+                                <Card.Title>{variant} {news.title}</Card.Title>
+                                <Card.Text>
+                                  {news.summary}<br></br><br></br>
+                                  <a target="_blank" href={news.link} rel="noopener noreferrer"><Button variant="light">Link to Article</Button></a>
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          ))
+
+
+                        // <div key={i} className="daily-news">
+                        //     <h4>{news.title} <Badge variant="secondary">New</Badge></h4>
+                        //     <h5>The Author is: {news.author}</h5>
+                        //     <p>{news.summary}</p>
+                        //     <a href={news.link}>Link to Article</a>
+                        // </div>
                     )
                 })
             } 
