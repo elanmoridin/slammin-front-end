@@ -1,4 +1,7 @@
 import React , { Component } from 'react'
+import {Card} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
+// old api calls from google news
 // import axios for the api call we use
 // import axios from 'axios'
 
@@ -72,7 +75,7 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
         return (
         <div>
             {/* return weekly news */}
-            <h2>Weekly News</h2>
+            <h1 id='weekly-news'>Weekly News</h1>
             {
                 // if weekly news is null then it lists nothing
                 this.state.weeklynewslist == null
@@ -82,13 +85,34 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
                 // else it maps the array and pulls out the info to display it
                 this.state.weeklynewslist.map(function(news, i) {
                     return (
-                        <div key={i} className="weekly-news">
-                            <h4>{news.id}</h4>
-                            <h4>{news.title}</h4>
-                            <h5>The Author is: {news.author}</h5>
-                            <p>{news.summary}</p>
-                            <a href={news.link}>Link to Article</a>
-                        </div>
+                        ['Dark'].map((variant, idx) => (
+                            <Card
+                              bg={variant.toLowerCase()}
+                              key={idx}
+                              text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
+                            //   style={{ width: '85%' }}
+                              className="mb-2"
+                            >
+                              <Card.Header>Published: {news.published_date}</Card.Header>
+                              <Card.Body>
+                                <Card.Title>{variant} {news.title}</Card.Title>
+                                <Card.Text>
+                                  {news.summary}<br></br><br></br>
+                                  <a target="_blank" href={news.link} rel="noopener noreferrer"><Button variant="light">Link to Article</Button></a>
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          ))
+
+                        // old mapping with no cards
+
+                        // <div key={i} className="weekly-news">
+                        //     <h4>{news.id}</h4>
+                        //     <h4>{news.title}</h4>
+                        //     <h5>The Author is: {news.author}</h5>
+                        //     <p>{news.summary}</p>
+                        //     <a href={news.link}>Link to Article</a>
+                        // </div>
                     )
                 })
             } 

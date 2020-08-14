@@ -81,7 +81,8 @@ componentDidMount(){
                             </Card>
                           ))
 
-
+                        // old return mapping with no card style
+                        
                         // <div key={i} className="daily-news">
                         //     <h4>{news.title} <Badge variant="secondary">New</Badge></h4>
                         //     <h5>The Author is: {news.author}</h5>
