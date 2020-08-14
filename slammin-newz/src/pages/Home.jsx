@@ -2,12 +2,9 @@ import React from 'react'
 import DailyNews from '../components/DailyNews'
 import WeeklyNews from '../components/WeeklyNews'
 import logo from '../graphics/daily-slam.png'
-import Header from '../components/Header'
+import HeaderHome from '../components/HeaderHome'
 import Container from 'react-bootstrap/Container'
-import firebase from 'firebase'
 import '../App.css'
-
-var userName = firebase.auth().currentUser
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -19,7 +16,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <div>
-                <Header />
+                <HeaderHome />
             <div>
                 {/* { */}
                 {/* userName === null

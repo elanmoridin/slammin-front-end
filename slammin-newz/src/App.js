@@ -14,6 +14,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Chat from './pages/Chat'
 import PasswordReset from './pages/PasswordReset'
+import { ProgressBar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
@@ -61,13 +62,11 @@ componentDidMount() {
       this.setState({
         authenticated: true,
         loading: false,
-        showNav: true,
       })
     } else {
       this.setState({
         authenticated: false,
         loading: false,
-        showNav: false,
       })
     }
   })
@@ -75,7 +74,7 @@ componentDidMount() {
 
   render() {
     // if state is set to loading then show loading while component mounts and when it mounts the state is set to false and the page shows
-    return this.state.loading === true ? <h2>Loading...</h2> : (
+    return this.state.loading === true ? <ProgressBar animated now={85} /> : (
       // router dom for react uses routes to switch components based on authitication
       <Router>
         <Switch>

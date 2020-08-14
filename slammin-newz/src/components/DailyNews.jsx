@@ -1,5 +1,6 @@
 import React , { Component } from 'react'
 import Container from 'react-bootstrap/Container'
+import {Badge} from 'react-bootstrap'
 // let serverURL = 'https://newsapi.org/v2/top-headlines?country=us' 
 // let wrestle = '&q=pro+wreslting&'
 // let dateMe = 'from=2020-08-12&'
@@ -60,7 +61,7 @@ componentDidMount(){
                 this.state.dailynewslist.map(function(news, i) {
                     return (
                         <div id={i} className="daily-news">
-                            <h4>{news.title}</h4>
+                            <h4>{news.title} <Badge variant="secondary">New</Badge></h4>
                             <h5>The Author is: {news.author}</h5>
                             <p>{news.summary}</p>
                             <a href={news.link}>Link to Article</a>
