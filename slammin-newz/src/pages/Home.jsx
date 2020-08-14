@@ -4,7 +4,10 @@ import WeeklyNews from '../components/WeeklyNews'
 import logo from '../graphics/daily-slam.png'
 import Header from '../components/Header'
 import Container from 'react-bootstrap/Container'
+import firebase from 'firebase'
 import '../App.css'
+
+var userName = firebase.auth().currentUser
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -13,26 +16,27 @@ export default class Home extends React.Component {
       }
     }
 
-
     render() {
         return (
             <div>
-                {
-                this.props.showNav === true
+                <Header />
+            <div>
+                {/* { */}
+                {/* userName === null
                 ?
                 <Container>
-                <Header />
                 <img id='site-logo' src={logo} alt="Logo" className='center'/>
                 <DailyNews />
                 <WeeklyNews />
                 </Container>
-                :
+                : */}
                 <Container>
                 <img id='site-logo' src={logo} alt="Logo" className='center'/>
                 <DailyNews />
                 <WeeklyNews />
                 </Container>
-                }
+                {/* } */}
+            </div>
             </div>
         )
     }

@@ -45,7 +45,8 @@ var requestOptions = {
 fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=professional%20wrestling", requestOptions)
   .then(res => res.json())
   .then(result => {
-    console.log(result)
+    // console logged result for testing
+    // console.log(result)
     const weeklynewslist = result
     this.setState({weeklynewslist: weeklynewslist.articles})
   })

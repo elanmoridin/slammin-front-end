@@ -31,8 +31,9 @@ export default class DailyNews extends Component {
         fetch("https://newscatcher.p.rapidapi.com/v1/search?media=True&sort_by=relevancy&lang=en&page=1&q=professional%20wrestling&from=" + theDate, requestOptions)
         .then(res => res.json())
         .then(result => {
-          console.log(result)
-          console.log(theDate)
+        //   testing date and results 
+        //   console.log(result)
+        //   console.log(theDate)
           const dailynewslist = result
           this.setState({dailynewslist: dailynewslist.articles})
         })
@@ -62,7 +63,7 @@ componentDidMount(){
                             <h4>{news.title}</h4>
                             <h5>The Author is: {news.author}</h5>
                             <p>{news.summary}</p>
-                            <button href={news.link}>Link to Article</button>
+                            <a href={news.link}>Link to Article</a>
                         </div>
                     )
                 })
