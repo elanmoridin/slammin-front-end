@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { signin, signInWithGoogle } from "../helpers/auth"
+import Header from "../components/Header"
+import {Container, Form} from 'react-bootstrap'
 
 export default class Login extends Component {
   constructor(props) {
@@ -10,15 +12,22 @@ export default class Login extends Component {
       email: "",
       password: ""
     };
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChangePassword = this.handleChangePassword.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.googleSignIn = this.googleSignIn.bind(this)
+    this.handleChangeEmail = this.handleChangeEmail.bind(this)
   }
 
-  handleChange(event) {
+  handleChangePassword(event) {
     this.setState({
-      [event.target.name]: event.target.value
-    });
+      password: event.target.value
+    })
+  }
+
+  handleChangeEmail(event) {
+    this.setState({
+      email: event.target.value
+    })
   }
 
   async handleSubmit(event) {
@@ -41,44 +50,31 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        <form
+        <>
+        <Header />
+        <Container className='themed-container' fluid='md'>
+        <Form
           autoComplete="off"
           onSubmit={this.handleSubmit}
         >
-          <h1>
-            Login to
-            <Link to="/">
-              Slammin Newz
-            </Link>
+          <h1 id='log-in' className='center'>
+            Login to:  <Link to="/">Slammin Newz</Link>
           </h1>
-          <p>
-            Fill in the form below to login to your account.
+          <p className='center'>
+            Fill in the form to sign up:
           </p>
-          <div>
-            <input
-              placeholder="Email"
-              name="email"
-              type="email"
-              onChange={this.handleChange}
-              value={this.state.email}
-            />
-          </div>
-          <div>
-            <input
-              placeholder="Password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-              type="password"
-            />
-          </div>
-          <div>
+            <Form.Group controlId='formGroupEmail'>
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type='email' placeholder='Enter Email' onChange={this.handleChangeEmail} value={this.state.email}/>
+            </Form.Group>
+            <Form.Group controlId='formGroupPassword'>
+              <Form.Label>Password</Form.Label>
+              <Form.Control type='password' placeholder='Enter Password' onChange={this.handleChangePassword} value={this.state.password}/>
+            </Form.Group>
             {this.state.error ? (
               <p>{this.state.error}</p>
             ) : null}
             <button type="submit">Login</button>
-          </div>
           <p><Link to="/passwordreset">Forgot Password</Link></p>
           <button onClick={this.googleSignIn} type="button">
                     Sign in with Google
@@ -87,8 +83,9 @@ export default class Login extends Component {
           <p>
             Don't have an account? <Link to="/signup">Sign up</Link>
           </p>
-        </form>
-      </div>
-    );
+          </Form>
+      </Container>
+      </>
+    )
   }
 }
