@@ -1,6 +1,7 @@
 import React , { Component } from 'react'
 import {Card} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 // old api calls from google news
 // import axios for the api call we use
 // import axios from 'axios'
@@ -73,7 +74,7 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
 
     render() {
         return (
-        <div>
+            <Container>
             {/* return weekly news */}
             <h1 id='weekly-news'>Weekly News</h1>
             {
@@ -83,10 +84,10 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
                 <></>
                 :
                 // else it maps the array and pulls out the info to display it
-                this.state.weeklynewslist.map(function(news, i) {
+                this.state.weeklynewslist.map(function(news) {
                     return (
                         ['Dark'].map((variant, idx) => (
-                            <Card
+                            <Card 
                               bg={variant.toLowerCase()}
                               key={idx}
                               text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
@@ -116,7 +117,7 @@ fetch("https://newscatcher.p.rapidapi.com/v1/search_free?media=True&lang=en&q=pr
                     )
                 })
             } 
-        </div>
+            </Container>
         )}
     }
 
