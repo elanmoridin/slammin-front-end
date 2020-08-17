@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { signin, signInWithGoogle } from "../helpers/auth"
 import Header from "../components/Header"
-import {Container, Form} from 'react-bootstrap'
+import {Container, Form, Button} from 'react-bootstrap'
 
 export default class Login extends Component {
   constructor(props) {
@@ -18,6 +18,8 @@ export default class Login extends Component {
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
   }
 
+// two handlers -- one for password and one for email for bootstrap integraton
+
   handleChangePassword(event) {
     this.setState({
       password: event.target.value
@@ -30,6 +32,7 @@ export default class Login extends Component {
     })
   }
 
+// using async to try and catch errors more succinctly
   async handleSubmit(event) {
     event.preventDefault();
     this.setState({ error: "" });
@@ -40,6 +43,7 @@ export default class Login extends Component {
     }
   }
 
+  // google sign in function from firebase documentation 
   async googleSignIn() {
     try {
       await signInWithGoogle();
@@ -71,17 +75,14 @@ export default class Login extends Component {
               <Form.Label>Password</Form.Label>
               <Form.Control type='password' placeholder='Enter Password' onChange={this.handleChangePassword} value={this.state.password}/>
             </Form.Group>
-            {this.state.error ? (
-              <p>{this.state.error}</p>
-            ) : null}
-            <button type="submit">Login</button>
-          <p><Link to="/passwordreset">Forgot Password</Link></p>
-          <button onClick={this.googleSignIn} type="button">
+            <Button variant='info' type="submit" >Login to Account</Button>  
+          <Link to="/passwordreset"><Button variant='danger' >Forgot Password</Button></Link>  
+          <Button variant='success' onClick={this.googleSignIn} type="button">
                     Sign in with Google
-          </button>
+          </Button>  
           <hr />
           <p>
-            Don't have an account? <Link to="/signup">Sign up</Link>
+            Don't have an account? <Link to="/signup"><Button variant='warning'>Sign Up</Button></Link>
           </p>
           </Form>
       </Container>
