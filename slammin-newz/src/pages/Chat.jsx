@@ -38,6 +38,7 @@ async handleSubmit(event) {
             content: this.state.content,
             timestamp: Date.now(),
             uid: this.state.user.uid,
+            user: auth().currentUser.email,
         })
         this.setState({ content: '' })
     } catch (error) {
@@ -55,6 +56,8 @@ async componentDidMount(){
                 chats.push(chat.val())
             })
             this.setState({ chats })
+            // testing auth object
+            console.log(auth().currentUser)
         })
     } catch (err) {
         this.setState({ readError: err.message })
@@ -69,9 +72,12 @@ async componentDidMount(){
                 <Container className="chats">
                     {this.state.chats.map(chat => {
                         return( 
-                            <div key={chat.timestamp}><div id='chat-bubbles' className='left-chat'><p>{chat.content}</p></div><br></br><br></br></div>)
+                            <div key={chat.timestamp}>{auth().currentUser.uid === chat.uid
+                            ? <div className='clearfix'><div id='chat-bubbles' className='right-chat'><p>{chat.content}</p></div><br></br><br></br><br></br><br></br><br></br><br></br></div>
+                            : <div className='clearfix'><div key={chat.timestamp}><div id='chat-bubbles' className='left-chat'><p>{chat.content}</p></div><br></br></div></div>
+                            }</div>)
                     })}
-              </Container>
+                </Container>
               <br></br>
               <Container>
               <Form onSubmit={this.handleSubmit}>
