@@ -64,9 +64,7 @@ export default class Login extends Component {
           <h1 id='log-in' className='center'>
             Login to:  <Link to="/">Slammin Newz</Link>
           </h1>
-          <p className='center'>
-            Fill in the form to sign up:
-          </p>
+          <p className='center'>Fill in the form to sign up:</p>
             <Form.Group controlId='formGroupEmail'>
               <Form.Label>Email address</Form.Label>
               <Form.Control type='email' placeholder='Enter Email' onChange={this.handleChangeEmail} value={this.state.email}/>
@@ -81,8 +79,7 @@ export default class Login extends Component {
                     Sign in with Google
           </Button>  
           <hr />
-          <p>
-            Don't have an account? <Link to="/signup"><Button variant='warning'>Sign Up</Button></Link>
+          <p>Don't have an account? <Link to="/signup"><Button variant='warning'>Sign Up</Button></Link>
           </p>
           </Form>
       </Container>

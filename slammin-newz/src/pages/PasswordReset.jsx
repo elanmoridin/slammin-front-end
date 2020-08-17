@@ -10,12 +10,12 @@ export default class Login extends Component {
       error: null,
       email: "",
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChangeEmail = this.handleChangeEmail.bind(this)
   }
 
-  handleChange(event) {
+  handleChangeEmail(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      email: event.target.value
     });
   }
 
@@ -24,7 +24,7 @@ export default class Login extends Component {
       <>
       <Header />
       <Container className='themed-container' fluid='md'>
-        <form
+        <Form
           onSubmit={passwordReset}
         >
           <h1 id='log-in' className='center'>
@@ -38,15 +38,19 @@ export default class Login extends Component {
               <Form.Control type='email'
               placeholder="Email"
               name="email"
-              type="email"
               value={this.state.email}
-              onChange={this.handleChange}
+              onChange={this.handleChangeEmail}
               />
               </Form.Group>
           <div>
             <Button variant='danger' type="submit">Forgot Password</Button>
+            <Button variant='success' onClick={this.googleSignIn} type="button">
+                    Sign in with Google
+            </Button>
           </div>
-        </form>
+          <hr />
+              <p>Already have an account? <Link to="/login"><Button variant='info' type='button'>Sign In Here</Button></Link></p>
+        </Form>
       </Container>
       </>
     )

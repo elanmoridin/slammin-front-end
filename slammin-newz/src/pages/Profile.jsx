@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Container from 'react-bootstrap/Container'
-import { handleLogOut } from '../helpers/auth'
+import coming_soon from '../graphics/comic-bub.png'
 
 export default class Profile extends React.Component {
     constructor(props) {
@@ -13,16 +12,13 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div>
+            <>
                 <Header />
-                <Container>
-                    <h1>This is my profile!</h1>
-                    <Link to="/">
-                    News Page
-                    </Link>
-                    <button onClick={handleLogOut}>Logout</button>
+                <Container className='themed-container' fluid='md'>
+                    <h1 id='log-in' className='center'>Profiles with Bookmarks are coming soon!</h1>
+                    <img alt='coming soon banner' id='coming-soon' src={coming_soon} width='300 px'/>
                 </Container>
-            </div>
+            </>
         )
     }
 }

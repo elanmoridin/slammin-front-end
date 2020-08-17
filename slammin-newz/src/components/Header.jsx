@@ -1,9 +1,9 @@
 import React , { Component } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { auth } from '../services/firebase'
-import {Form} from 'react-bootstrap'
-import {Button} from 'react-bootstrap'
-import {handleLogOut} from '../helpers/auth'
+import { Form, Button } from 'react-bootstrap'
+import { handleLogOut } from '../helpers/auth'
+import { Link } from 'react-router-dom'
 
 export default class Header extends Component{
     constructor(props) {
@@ -35,7 +35,7 @@ export default class Header extends Component{
                             }
                     </Navbar.Text>
                     {auth().currentUser === null 
-                            ? <></>
+                            ? <Link to="/login"><Button variant='outline-light' type='button'>Sign In Here</Button></Link>
                             : <Button onClick={handleLogOut} variant="outline-light">Logout</Button>
                             }
                     </Form>
