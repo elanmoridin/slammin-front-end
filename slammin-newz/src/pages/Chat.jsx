@@ -2,8 +2,10 @@ import React , { Component } from "react"
 import { auth } from '../services/firebase'
 import { db } from '../services/firebase'
 // couldn't get logout function to migrate from auth file
-import { handleLogOut } from '../helpers/auth'
+// no longer needed as it's handled by nav bar
+// import { handleLogOut } from '../helpers/auth'
 import Header from '../components/Header'
+import { Container, Button, Form } from 'react-bootstrap'
 
 
 export default class Chat extends Component {
@@ -20,13 +22,14 @@ export default class Chat extends Component {
       this.handleSubmit = this.handleSubmit.bind(this)
     //   this.handleLogOut = this.handleLogOut.bind(this)
     }
-
+// event handler for typing in box
 handleChange(event) {
     this.setState({
         content: event.target.value
     })
 }
 
+// handle submit button takes content from box and pushes it to db along with a timestamp and a user uid from the logged in user and then sets the content state to '' so the box is cleared
 async handleSubmit(event) {
     event.preventDefault()
     this.setState({ writeError: null })
@@ -42,13 +45,14 @@ async handleSubmit(event) {
     }
 }
 
+// when component mounts it takes the chat history from the database and pushes it into the state of chats array then displays that array --- this allows close to real time showing of chats
 async componentDidMount(){
     this.setState({ readError: null})
     try {
-        db.ref("chats").on("value", snapshot => {
+        db.ref("chats").on("value", chathistory => {
             let chats = []
-            snapshot.forEach((snap) => {
-                chats.push(snap.val())
+            chathistory.forEach((chat) => {
+                chats.push(chat.val())
             })
             this.setState({ chats })
         })
@@ -59,24 +63,33 @@ async componentDidMount(){
 
     render() {
         return (
-            <div>
+            <>
             <Header />
-                <div className="chats">
+            <br></br><br></br>
+                <Container className="chats">
                     {this.state.chats.map(chat => {
-                        return <p key={chat.timestamp}>{chat.content}</p>
+                        return( 
+                            <div key={chat.timestamp}><div id='chat-bubbles' className='left-chat'><p>{chat.content}</p></div><br></br><br></br></div>)
                     })}
-              </div>
-              
-              <form onSubmit={this.handleSubmit}>
-                <input onChange={this.handleChange} value={this.state.content}></input>
-                {this.state.error ? <p>{this.state.writeError}</p> : null}
-                <button type="submit">Send</button>
-              </form>
-              <div>
+              </Container>
+              <br></br>
+              <Container>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Group controlId="textarea">
+                    <Form.Control onChange={this.handleChange} value={this.state.content} as='textarea' rows='3' placeholder='Type a message...'></Form.Control>
+                {/* for testing state errors before finishing
+                {this.state.error ? <p>{this.state.writeError}</p> : null} */}
+                    <Button variant='success' type="submit">Send</Button>
+                </Form.Group>
+              </Form>
+              </Container>
+              {/* not longer need this as handled by navbar
+                <div>
                 Login in as: <strong>{this.state.user.email}</strong>
-              </div>
-              <button onClick={handleLogOut}>Logout</button>
-            </div>
-          );
+              </div> */}
+              {/* don't need logout here as nav bar is working
+              <button onClick={handleLogOut}>Logout</button> */}
+            </>
+          )
         }
 }
