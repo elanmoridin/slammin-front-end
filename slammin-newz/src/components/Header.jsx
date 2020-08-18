@@ -31,7 +31,7 @@ export default class Header extends Component{
                     <Navbar.Text className="mr-sm-2">
                             {auth().currentUser === null 
                             ? <></>
-                            : <h5>Signed in as: {auth().currentUser.email}</h5>
+                            : <h5 className='sign-in-name'>Signed in as: {auth().currentUser.email}</h5>
                             }
                     </Navbar.Text>
                     {auth().currentUser === null 

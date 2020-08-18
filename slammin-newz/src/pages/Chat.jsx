@@ -39,6 +39,7 @@ async handleSubmit(event) {
             timestamp: Date.now(),
             uid: this.state.user.uid,
             user: auth().currentUser.email,
+            userName: auth().currentUser.displayName,
         })
         this.setState({ content: '' })
     } catch (error) {
@@ -57,7 +58,7 @@ async componentDidMount(){
             })
             this.setState({ chats })
             // testing auth object
-            console.log(auth().currentUser)
+            // console.log(auth().currentUser)
         })
     } catch (err) {
         this.setState({ readError: err.message })
