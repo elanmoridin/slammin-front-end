@@ -75,7 +75,7 @@ async componentDidMount(){
                         return( 
                             <div key={chat.timestamp}>{auth().currentUser.uid === chat.uid
                             ? <div className='clearfix'><div id='chat-bubbles' className='right-chat'><p>{chat.content}</p></div><br></br><br></br><br></br><br></br><br></br><br></br></div>
-                            : <div className='clearfix'><div key={chat.timestamp}><div id='chat-bubbles' className='left-chat'><p>{chat.content}</p></div><br></br></div></div>
+                            : <div className='clearfix'><div key={chat.timestamp}><div id='chat-bubbles' className='left-chat'><p>{chat.content}</p><h6 className='posting'>post by: {chat.user}</h6></div><br></br><br></br><br></br></div></div>
                             }</div>)
                     })}
                 </Container>

@@ -64,6 +64,11 @@
   clear: both;
 }
 
+.posting {
+  font-size: 10px;
+  padding-top : 20px;
+}
+
 .center {
   display: block;
   margin-left: auto;
