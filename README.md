@@ -8,10 +8,18 @@ In the services folder there is a Firebase.js file to update your config informa
 You will also need to sign up for a Newscatcher API key for the news section of the project. [Can be found here](https://newscatcherapi.com/)  
 
 List of Dependencies  
-* firebase  
-* bootstrap for react  
-* react-dom  
-* react-router-dom  
+* "@testing-library/jest-dom": "^4.2.4",
+* "@testing-library/react": "^9.5.0",
+* "@testing-library/user-event": "^7.2.1",
+* "axios": "^0.19.2",
+* "bootstrap": "^4.5.2",
+* "firebase": "^7.17.2",
+* "re-base": "^4.0.0",
+* "react": "^16.13.1",
+* "react-bootstrap": "^1.3.0",
+* "react-dom": "^16.13.1",
+* "react-router-dom": "^5.2.0",
+* "react-scripts": "^3.4.3"
 
 ## Hosting
 Feel free to host where you want BUT since the database is hosted through Firebase I found it easier to host there. [Read more about hosting on Firebase](https://firebase.google.com/docs/hosting)  
