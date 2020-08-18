@@ -30,7 +30,6 @@ export default class WeeklyNews extends Component {
       // set world news list to null to start for page load
       weeklynewslist: null,
     };
-    this.findNews = this.findNews.bind(this);
   }
 
   // old fetch call before switching to axios call
