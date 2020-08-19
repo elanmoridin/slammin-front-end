@@ -72,7 +72,7 @@ componentDidMount(){
                             >
                               <Card.Header>Published: {news.published_date}</Card.Header>
                               <Card.Body>
-                                <Card.Title>{variant} {news.title}</Card.Title>
+                                <Card.Title>{news.title}</Card.Title>
                                 <Card.Text>
                                   {news.summary}<br></br><br></br>
                                   <a target="_blank" href={news.link} rel="noopener noreferrer"><Button variant="light">Link to Article</Button></a>
