@@ -2,6 +2,8 @@
 
 ## This project is to unite people who are fans of wrestling. It includes a news aggregator as well as sign in through Firebase using Google or email. After signed in a user can enter a chat room that is put together through nosql Firebase database.  
 
+## [Live Site](https://slammin-newz.web.app/)
+
 ## Setup and Usage  
 [Setup a Firebase account and project](http://mariechatfield.com/tutorials/firebase/step1.html)  
 In the services folder there is a Firebase.js file to update your config information including apiKey, AuthDomain, and Database Path which for this project is the real time database in Firebase  
