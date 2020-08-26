@@ -11,45 +11,45 @@ export default class SignUp extends Component {
         super(props);
         this.state = {
             error: null,
-            email: '',
-            password: '',
-        };
-        this.handleChange = this.handleChangeEmail.bind(this)
+            email: "",
+            password: "",
+        }
+        this.handleChangeEmail = this.handleChangeEmail.bind(this)
         this.handleChangePassword = this.handleChangePassword.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.googleSignIn = this.googleSignIn.bind(this)
         }
 // two handlers one for password and one for email for bootstrap integraton  
-    handleChangePassword(event) {
+  handleChangePassword(event) {
     this.setState({
-        password: event.target.value
+      password: event.target.value
     })
-    }
+  }
 
-    handleChangeEmail(event) {
-      this.setState({
-          email: event.target.value
-      })
-      }
+  handleChangeEmail(event) {
+    this.setState({
+      email: event.target.value
+    })
+  }
 
 // functon that signs up with email and sets state to current email
-    async handleSubmit(event) {
-        event.preventDefault();
-        this.setState({ error: '' });
-        try {
-          await signup(this.state.email, this.state.password);
-        } catch (error) {
-          this.setState({ error: error.message });
-        }
-    }
-// google sign in function
-    async googleSignIn() {
-        try {
-          await signInWithGoogle();
-        } catch (error) {
-          this.setState({ error: error.message });
-        }
+  async handleSubmit(event) {
+      event.preventDefault();
+      this.setState({ error: '' });
+      try {
+        await signup(this.state.email, this.state.password);
+      } catch (error) {
+        this.setState({ error: error.message });
       }
+  }
+// google sign in function
+  async googleSignIn() {
+      try {
+        await signInWithGoogle();
+      } catch (error) {
+        this.setState({ error: error.message });
+      }
+    }
 
     render() {
         return (
@@ -63,11 +63,11 @@ export default class SignUp extends Component {
               <p className='center'>Fill in the form below to create an account:</p>
               <Form.Group controlId='formGroupEmail'>
                 <Form.Label>Email address</Form.Label>
-                <Form.Control placeholder="Email" name="email" type="email" onChange={this.handleChangeEmail} value={this.state.email}></Form.Control>
+                <Form.Control placeholder="Enter Email"  type="email" onChange={this.handleChangeEmail} value={this.state.email}></Form.Control>
               </Form.Group>
               <Form.Group controlId='formGroupPassword'>
                 <Form.Label>Password</Form.Label>
-                <Form.Control placeholder="Password" name="password" onChange={this.handleChangePassword} value={this.state.password} type="password"></Form.Control>
+                <Form.Control placeholder="Enter Password" type="password" onChange={this.handleChangePassword} value={this.state.password}></Form.Control>
               </Form.Group>
                 <Button variant='warning' type="submit">Sign Up</Button>
                 <Button variant='success' onClick={this.googleSignIn} type="button">

@@ -11,11 +11,11 @@ export default class Login extends Component {
       error: null,
       email: "",
       password: ""
-    };
+    }
+    this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.googleSignIn = this.googleSignIn.bind(this)
-    this.handleChangeEmail = this.handleChangeEmail.bind(this)
   }
 
 // two handlers -- one for password and one for email for bootstrap integraton
@@ -64,7 +64,7 @@ export default class Login extends Component {
           <h1 id='log-in' className='center'>
             Login to:  <Link to="/">Slammin Newz</Link>
           </h1>
-          <p className='center'>Fill in the form to sign up:</p>
+          <p className='center'>Fill in the form to log in:</p>
             <Form.Group controlId='formGroupEmail'>
               <Form.Label>Email address</Form.Label>
               <Form.Control type='email' placeholder='Enter Email' onChange={this.handleChangeEmail} value={this.state.email}/>
